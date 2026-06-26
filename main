@@ -1,2 +1,21 @@
-Getgenv().Key = "DgUf10FkmmLooooLLLL"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/TantoNetworks/Filteringdisabler/refs/heads/main/Main"))()
+-- Global anahtar tanımı
+getgenv().Key = "DgUf10FkmmLooooLLLL"
+
+-- Dışarıdan scripti güvenli bir şekilde çağırma
+pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TantoNetworks/Filteringdisabler/refs/heads/main/Main"))()
+end)
+
+-- Metatable Hooking (__index için Safemode Yapısı)
+local oldIndex
+oldIndex = hookmetamethod(game, "__index", function(self, key)
+    -- SAFEMODE: Eğer çağıran script oyunun kendisiyse, orijinal işleyişi bozma!
+    if not checkcaller() then
+        return oldIndex(self, key)
+    end
+
+    -- Buraya exploit/script için yapmak istediğin manipülasyonlar gelir
+    -- Örn: Belirli bir veriyi taklit etmek veya gizlemek
+
+    return oldIndex(self, key)
+end)
