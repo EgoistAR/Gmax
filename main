@@ -1,3 +1,2 @@
 Getgenv().Key = "DgUf10FkmmLooooLLLL"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TantoNetworks/Filteringdisabler/refs/heads/main/Main"))()
-workspace.FilteringEnabled = false
